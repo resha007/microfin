@@ -1,3 +1,8 @@
+<?php
+$this->session = \Config\Services::session();
+$this->session->start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +36,10 @@
             height: 100%;
             border: none;
         }
+
+		#change_password{
+			height: 20%;
+		}
           
         iframe {
             display: block;
@@ -56,10 +65,11 @@
 				<a class="navbar-brand" href="#"><span>MICRO</span>CREDIT</a>
 				<ul class="user-menu">
 					<li class="dropdown pull-right">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> User <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> <?= $this->session->get('username') ?> <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>
-							<li><a href="#"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Settings</a></li>
+							<!-- <li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>
+							<li><a href="#"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Settings</a></li> -->
+							<li><a href="#" data-toggle="modal" data-target="#change_password"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Change Password</a></li>
 							<li><a href="#" id="logout"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
 						</ul>
 					</li>
@@ -80,17 +90,38 @@
 			<li><a href="<?=base_url()?>/line" target="pageContent"><svg class="glyph stroked user"><use xlink:href="#stroked-dashboard-dial"></use></svg> Line</a></li>
 			<li><a href="<?=base_url()?>/customer" target="pageContent"><svg class="glyph stroked user"><use xlink:href="#stroked-dashboard-dial"></use></svg> Customer</a></li>
 			<hr>
-			
-			
 		</ul>
 
 	</div><!--/.sidebar-->
-
+		
 	<iframe name="pageContent" src="" class="" frameborder="0px"  width="100%" id="iframe1" scrolling="auto"></iframe>
 		
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
-		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+	<div class="row">
 			
+<!-- Modal -->
+<div class="modal fade" id="change_password" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>	
+			</div>
+		</div><!--/.row-->		
+	
 	</div><!--/.main-->
 
 	<script src="js/jquery-1.11.1.min.js"></script>
